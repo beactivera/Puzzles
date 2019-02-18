@@ -1,6 +1,7 @@
 #container {
   display: grid;
   background-color: beige;
+  
 }
 .dropzone{
   outline: 0.5px solid blue;
@@ -8,6 +9,6 @@
 
 .piece {
   outline: 0.5px solid grey;
-  background-image: url("image.jpg");
-  position: absolute;
+  background-color: lightskyblue;
+  z-index: 3;
 }

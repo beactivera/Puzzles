@@ -1,20 +1,16 @@
-"use strict";
-const imageAddress = "image.jpg";
-let container_height = document.querySelector("img").naturalHeight;
-let container_width = document.querySelector("img").naturalWidth;
+
 
 const numOfXPieces = 3;
 const numOfYPieces = 3;
 
-let container = document.querySelector('#container');
+let container = document.getElementById('container');
+
+const container_width = 900;
+
+const container_height = 900;
  
 
-window.addEventListener("DOMContentLoaded", loadTheImage);
-
-function loadTheImage() {
-  document.querySelector("img").src = imageAddress;
-  document.querySelector("img").onload = prepareContainer;
-}
+window.addEventListener("DOMContentLoaded", prepareContainer);
 
 function prepareContainer() {
   console.log('prepareContainer');
@@ -27,14 +23,12 @@ function prepareContainer() {
 
       pieceContainer.style.height = container_height / numOfYPieces + "px";
 
-      pieceContainer.textContent = `${x}${y}`;
+      // pieceContainer.textContent = `${x}${y}`;
       pieceContainer.classList.add("dropzone");
       container.appendChild(pieceContainer);
     }
   }
-
-  builtPuzzles();
-}
+};
 
 function builtPuzzles(){
   console.log('builtPuzzles');
@@ -43,18 +37,24 @@ function builtPuzzles(){
 
       let puzzle = document.createElement("div");
       
-      puzzle.style.height = container_height / numOfYPieces + "px";
-      puzzle.style.width = container_width / numOfXPieces + "px";
+      let puzzleHeight = puzzle.style.height = container_height / numOfYPieces + "px";
+      let puzzleWidth = puzzle.style.width = container_width / numOfXPieces + "px";
 
-      puzzle.textContent = `${x}${y}`;
+      let top = y * puzzleHeight;
+      let left = x *puzzleWidth;
+
+      // puzzle.textContent = `${x}${y}`;
       puzzle.classList.add("piece");
       puzzle.setAttribute('draggable', true);
-      // piece.style.backgroundPosition =`top ${y}*${newHeight}px left ${x}*${newWidth}px`;
+      puzzle.style.backgroundImage = `url(image.jpg)`;
+      piece.style.backgroundPosition =`top ${y}*${newHeight}px left ${x}*${newWidth}px`;
       document.querySelector("body").appendChild(puzzle);
     }
   }
-
-};
+  // giving the random location of each puzzle in the body
+  document.querySelectorAll("piece").forEach(element => {
+    element.style.left = `${Math.random()*500 + 250}px`;
+});
 
 let dragged;
 
@@ -95,4 +95,4 @@ document.addEventListener("drop", function(event) {
     dragged.style.left = event.pageX + "px";
     dragged.style.top = event.pageY + "px";
   }
-});
+})
