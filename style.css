@@ -1,14 +1,20 @@
+img{
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+
 #container {
   display: grid;
   background-color: beige;
-  
 }
+
 .dropzone{
   outline: 0.5px solid blue;
 }
 
 .piece {
+  position: absolute;
   outline: 0.5px solid grey;
   background-color: lightskyblue;
-  z-index: 3;
 }
